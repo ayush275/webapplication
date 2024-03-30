@@ -1,0 +1,57 @@
+﻿@model WebData.Models.ViewModel.LogInSignUpViewModel
+@{
+    ViewData["Title"] = "LogIn";
+ 
+}
+<body>
+<div class="container ">
+    <div class="row ">
+        <div class="col-4 offset-3 rounded pl-5 pr-5 pb-5 mt-5">
+            <div class="text-center">
+                <h1 class="text-center  text-primary fs-1 text-decoration-underline">Log In</h1>
+            </div>
+            <h3 class="text-danger">@TempData["errorMessage"]</h3>
+            <form method="post" asp-action="Login">
+                <div class="form-group fs-4 fw-bold">
+                    <label asp-for="Username"></label>
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                    <input type="text" asp-for="Username" placeholder="enter the username" class="form-control" autocomplete="off" />
+                </div>
+                <div class="form-group  fw-bold   fs-4">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <label asp-for="Password"></label>
+                    <input type="password" asp-for="Password" placeholder="enter the password" class="form-control" autocomplete="off" />
+                    <i class="fa fa-eye"></i>
+                </div>
+                <div class="form-group fw-bold  fs-4">
+                    <span asp-validation-for="IsRemember" class="text-danger"></span>
+                    <input type="checkbox" asp-for="IsRemember" />
+                    <label asp-for="IsRemember"></label>
+                </div>
+                <dnt-captcha asp-captcha-generator-max="999999" asp-captcha-generator-min="111111" asp-captcha-generator-language="English"
+                                 asp-captcha-generator-display-mode="ShowDigits" asp-fore-color="#ccc" asp-back-color="#008000" asp-font-name="Tohoma"
+                                 asp-font-size="20"asp-refresh-button-class="fas fa-redo btn-sm"asp-use-relative-urls="true"asp-placeholder="Enter Captcha"
+                asp-text-box-class="text-box form-control"asp-text-box-template="<span class='input-group-prepend'><span class='form-group-text'</span></span>{0}"
+                asp-validation-message-class="text-danger"
+                asp-use-noise="false"></dnt-captcha>
+               
+                    @if (TempData["captchaError"] != null)
+                    {
+                        <span class="text-danger alert alert-danger">@TempData["captchaError"]</span>
+                    }
+                    <br />
+                <div class="form-group text-center">
+                    <input type="submit" class="btn btn-block btn-primary mb-2" value="Log In" autocomplete="off" />
+                    <a class="  btn btn-primary btn-block mb-2" asp-action="SignUp" asp-controller="Account">SignUp</a>
+                </div>
+            </form>
+            <br />
+            <div class="text-center">
+              
+                <a class="text-warning fw-bold fs-5" asp-action="ForgotPassword">Forget Password?</a>
+               
+            </div>
+        </div>
+    </div>
+</div>
+</body>

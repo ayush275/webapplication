@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebData.Models.student>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container emp ">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h1>Student Record</h1>
+            <h3 class="text-danger">@TempData["errorMessage"]</h3>
+            <a class="btn btn-sm btn-success m-1 " asp-controller="student"asp-action="Create">Create</a>
+            <table class="table table-bordered">
+                <tr class="text-center">
+                    <th>
+                        Student Id
+                        
+                        </th>
+
+                        <th>
+                            Student firstname
+
+                        </th>
+
+                        <th>
+                            Student lastname
+
+                        </th>
+                    <th>
+                        Student Email
+
+                    </th>
+                    <th>
+                        Student Mobile
+
+                    </th>
+                    <th>
+                        Student City
+
+                    </th>
+                    <th>Action</th>
+                </tr>
+                @foreach (var d in Model)
+                {
+                    <tr class="text-center">
+                        <td>@d.Id</td>
+                        <td>@d.firstname</td>
+                        <td>@d.lastname</td>
+                        <td>@d.Email</td>
+                        <td>@d.Mobile</td>
+                        <td>@d.city</td>
+                        <td>
+                            <a class="btn btn-sm btn-warning"asp-controller="student"asp-action="Edit"asp-route-Id="@d.Id">Edit</a>
+                            <br/>
+                            <a class="btn btn-sm btn-danger" asp-controller="student" asp-action="Delete" asp-route-Id="@d.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+         
+        </div>
+
+    </div>
+</div>
+
+
